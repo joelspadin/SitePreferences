@@ -1,0 +1,94 @@
+﻿#wallpaper {
+  background-image: url(/img/pattern/use_your_illusion.png);
+}
+#reset p span {
+  display: inline-block;
+  min-width: 150px;
+}
+footer {
+  direction: ltr;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+#plugins p {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+#plugins p span:first-child {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  margin-__MSG_@@bidi_end_edge__: 40px;
+  text-align: __MSG_@@bidi_start_edge__;
+}
+#plugins p span + span {
+  direction: ltr;
+}
+#plugins p span + span > label:first-of-type {
+  border-radius: 3px 0 0 3px;
+}
+#plugins p span + span > label:last-of-type {
+  border-radius: 0 3px 3px 0;
+}
+#plugins p input {
+  position: absolute;
+  left: -9999px;
+}
+#plugins p label {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 0 10px;
+  min-width: 80px;
+  line-height: 24px;
+  border: 1px solid #dedede;
+  background: #f7f7f7;
+  text-align: center;
+  -webkit-user-select: none;
+  user-select: none;
+}
+#plugins p label + input + label {
+  border-left: none;
+}
+#plugins p label:hover,
+#plugins p input:focus + label {
+  background: #eaeaea;
+}
+#plugins p label:active {
+  background: #dedede;
+}
+#plugins p input:checked + label {
+  background: #1979ca;
+  color: #ffffff;
+}
+#plugins p input:checked + label:hover,
+#plugins p input:checked:focus + label {
+  background: #1c87e1;
+}
+#plugins p input:checked + label:active {
+  background: #3193e5;
+}
+p.warning {
+  border: 1px solid #ddb100;
+  background: #fff8dd;
+  padding: 5px 10px;
+}
+p.warning::before {
+  content: '';
+  display: block;
+  float: left;
+  width: 30px;
+  height: 30px;
+  margin-top: 3px;
+  margin-right: 10px;
+  background: url(/img/warning.svg) center no-repeat;
+  background-size: contain;
+}
+p.warning code {
+  border-color: #ddb100;
+  background-color: #fea;
+}
+/*# sourceMappingURL=options-custom.css.map */

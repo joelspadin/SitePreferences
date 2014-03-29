@@ -1,0 +1,126 @@
+﻿@direction: ~"__MSG_@@bidi_dir__";
+@right: ~"__MSG_@@bidi_end_edge__";
+@left: ~"__MSG_@@bidi_start_edge__";
+
+@selected-background: #1979ca;
+@selected-text: #fff;
+@accent: #f7f7f7;
+@border: #dedede;
+
+#wallpaper {
+	background-image: url(/img/pattern/use_your_illusion.png);
+}
+
+#reset p span {
+	display: inline-block;
+	min-width: 150px;
+}
+
+footer {
+	direction: ltr;
+}
+
+a {
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+#plugins {
+	p {
+		display: flex;
+		flex-flow: row;
+		align-items: center;
+
+		span:first-child {
+			-ms-flex: 1 1 auto;
+			flex: 1 1 auto;
+			margin-@{right}: 40px;
+			text-align: @left;
+		}
+
+		span + span {
+			direction: ltr;
+
+			& > label:first-of-type {
+				border-radius: 3px 0 0 3px;
+			}
+
+			& > label:last-of-type {
+				border-radius: 0 3px 3px 0;
+			}
+		}
+
+		input {
+			position: absolute;
+			left: -9999px;
+		}
+
+		label {
+			display: inline-block;
+			box-sizing: border-box;
+			padding: 0 10px;
+			min-width: 80px;
+
+			line-height: 24px;
+			border: 1px solid @border;
+			background: @accent;
+			text-align: center;
+
+			-webkit-user-select: none;
+			user-select: none;
+		}
+
+		label + input + label {
+			border-left: none;
+		}
+
+		label:hover,
+		input:focus + label {
+			background: darken(@accent, 5);
+		}
+
+		label:active {
+			background: darken(@accent, 10);
+		}
+
+		input:checked + label {
+			background: @selected-background;
+			color: @selected-text;
+		}
+
+		input:checked + label:hover,
+		input:checked:focus + label {
+			background: lighten(@selected-background, 5);
+		}
+
+		input:checked + label:active {
+			background: lighten(@selected-background, 10);
+		}
+	}
+}
+
+p.warning {
+	border: 1px solid #ddb100;
+	background: #fff8dd;
+	padding: 5px 10px;
+
+	&::before {
+		content: '';
+		display: block;
+		float: left;
+		width:30px;
+		height: 30px;
+		margin-top: 3px;
+		margin-right: 10px;
+		background: url(/img/warning.svg) center no-repeat;
+		background-size: contain;
+	}
+
+	code {
+		border-color: #ddb100;
+		background-color: #fea;
+	}
+}

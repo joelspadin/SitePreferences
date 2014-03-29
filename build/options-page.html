@@ -1,0 +1,74 @@
+﻿<!doctype html>
+<html class="wallpaper">
+<head>
+	<meta charset="utf-8">
+	<title>Settings</title>
+
+	<link rel="icon" href="/img/icon-16.png">
+	<link rel="stylesheet" href="/css/options.css">
+	<link rel="stylesheet" href="/css/options-custom.css">
+	<script src="/js/lib/async.js"></script>
+	<script src="/js/lib/options-page.js"></script>
+	<script src="/js/options.js"></script>
+</head>
+<body>
+	<div id="wallpaper"></div>
+	<div id="content">
+
+		<header>
+			<img src="/img/icon-48.png">
+			<div>
+				<h1><span data-manifest="name"></span> <span data-manifest="version" class="version"></span></h1>
+				<h2><span data-msg="by"></span> <span data-manifest="developer.name"></span></h2>
+			</div>
+		</header>
+
+		<p id="version-warning" class="warning" data-msg="html:version_warning" hidden></p>
+		<p id="browser-warning" class="warning" data-msg="browser_warning" hidden></p>
+
+		<section id="reset">
+			<h3 data-msg="reset_settings"></h3>
+			<p>
+				<span data-msg="cookies"></span> <button data-content-type="cookies" data-msg="clear_all_settings"></button>
+			</p>
+			<p>
+				<span data-msg="images"></span> <button data-content-type="images" data-msg="clear_all_settings"></button>
+			</p>
+			<p>
+				<span data-msg="notifications"></span> <button data-content-type="notifications" data-msg="clear_all_settings"></button>
+			</p>
+			<p>
+				<span data-msg="plugins"></span> <button data-content-type="plugins" data-msg="clear_all_settings"></button>
+			</p>
+			<p>
+				<span data-msg="popups"></span> <button data-content-type="popups" data-msg="clear_all_settings"></button>
+			</p>
+			<p>
+				<span data-msg="scripts"></span> <button data-content-type="javascript" data-msg="clear_all_settings"></button>
+			</p>
+			<p>
+				<span data-msg="all_content_types"></span> <button data-content-type="all" data-msg="clear_all_settings"></button>
+			</p>
+		</section>
+
+		<section id="plugins" hidden>
+			<h3 data-msg="plugin_settings"></h3>
+			<p>
+				Some values may not work. You may need to clear plug-in settings for all sites to get back to defaults.
+			</p>
+			<!-- Generated settings go here -->
+		</section>
+
+		<footer>
+			<p>&copy; 2014 Joel Spadin</p>
+			<p>
+				Icon derived from <a href="http://thenounproject.com/term/browser/16164/">Browser</a>
+				by <a href="http://thenounproject.com/joe_harrison">Joe Harrison</a>
+				from <a href="http://thenounproject.com">The Noun Project</a>,
+				used under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.
+			</p>
+		</footer>
+
+	</div>
+</body>
+</html>

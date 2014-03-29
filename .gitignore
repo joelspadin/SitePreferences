@@ -1,0 +1,17 @@
+; Visual Studio directories
+/bin/
+/obj/
+
+; Visual Studio files
+*.suo
+*.user
+
+; Generated files
+*.crx
+*.map
+*.min.css
+*.min.html
+*.nex
+*.pyc
+README.html
+__pycache__

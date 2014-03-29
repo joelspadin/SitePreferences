@@ -1,0 +1,146 @@
+﻿{
+	"extension_name": {
+		"message": "Site-specific Preferences"
+	},
+	"extension_desc": {
+		"message": "Edit preferences on a per-site basis"
+	},
+	"by": {
+		"message": "By",
+		"description": "Appears on the options page as 'By [Extension Author]'"
+	},
+
+	"context_menu": {
+		"message": "Site preferences...",
+		"description": "Text for the context menu item"
+	},
+
+	"cookies": {
+		"message": "Cookies",
+		"description": "Cookies content type"
+	},
+	"images": {
+		"message": "Images",
+		"description": "Images content type"
+	},
+	"notifications": {
+		"message": "Notifications",
+		"description": "Notifications content type"
+	},
+	"plugins": {
+		"message": "Plug-ins",
+		"description": "Plug-ins content type"
+	},
+	"popups": {
+		"message": "Pop-ups",
+		"description": "Pop-ups content type"
+	},
+	"scripts": {
+		"message": "Scripts",
+		"description": "Scripts content type"
+	},
+	"all_content_types": {
+		"message": "All content types",
+		"description": "All of the supported content types"
+	},
+
+	"reset_settings": {
+		"message": "Reset settings",
+		"description": "Header for the Reset Settings section of the options page"
+	},
+	"clear_all_settings": {
+		"message": "Clear all settings",
+		"description": "Button to clear all settings for a content type"
+	},
+	"title_reset_settings": {
+		"message": "Reset $1 settings",
+		"description": "Title for the reset settings modal dialog. $1 is replaced by the content type being cleared."
+	},
+	"msg_confirm_reset": {
+		"message": "Are you sure you want to reset $1 settings? This will clear customized settings for all web sites.",
+		"description": "Message for the reset settings modal dialog. $1 is replaced by the content type being cleared."
+	},
+	"type_cookie": {
+		"message": "cookie",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"type_image": {
+		"message": "image",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"type_notification": {
+		"message": "notification",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"type_plugin": {
+		"message": "plug-in",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"type_popup": {
+		"message": "pop-up",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"type_script": {
+		"message": "script",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"type_all": {
+		"message": "all",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"plugin_settings": {
+		"message": "Global plugin settings",
+		"description": "Header for the Global Plugin Settings section of the options page"
+	},
+
+	"title_preferences": {
+		"message": "Preferences for $1",
+		"description": "Title for the site preferences modal dialog. $1 is replaced by the current site name."
+	},
+	"allow": {
+		"message": "Allow",
+		"description": "Content setting: allow the content type."
+	},
+	"ask": {
+		"message": "Ask",
+		"description": "Content setting: ask the user before allowing the content type."
+	},
+	"block": {
+		"message": "Block",
+		"description": "Content setting: block the content type."
+	},
+	"session_only": {
+		"message": "Session only",
+		"description": "Cookies content setting: allow cookies, but delete them when the session ends."
+	},
+	"default": {
+		"message": "Default",
+		"description": "Content setting: use the default global setting."
+	},
+	"save": {
+		"message": "Save",
+		"description": "Button: close the dialog and save changes."
+	},
+	"cancel": {
+		"message": "Cancel",
+		"description": "Button: close the dialog without saving changes."
+	},
+
+	"error": {
+		"message": "Error",
+		"description": "Title for error message dialogs."
+	},
+	"change_failed": {
+		"message": "Failed to change global settings for $1 to '$2'.",
+		"description": "Error message when a global plug-in setting could not be changed. $1 is replaced with the plug-in name and $2 with the attempted setting value."
+	},
+
+	"version_warning": {
+		"message": "This version of Opera has an issue which prevents extensions from setting plug-ins to <strong>Click to play</strong>. If this is your default setting and you change a site to <strong>Allow</strong> or <strong>Block</strong>, you will not be able to change it back without resetting plug-in settings for all sites. This is fixed in the <a href='http://blogs.opera.com/desktop/'>development versions of Opera.</a>",
+		"description": "Warning displayed when using old versions of Opera in which plug-ins cannot be set to the Ask setting. HTML allowed."
+	},
+	"browser_warning": {
+		"message": "Some features of this extension may be Opera-specific and will not function in your browser.",
+		"description": "Warning displayed when using a browser which isn't Opera."
+	}
+}

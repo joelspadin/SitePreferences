@@ -1,0 +1,52 @@
+{
+	"name": "__MSG_extension_name__",
+	"version": "1.0",
+	"manifest_version": 2,
+	"default_locale": "en_US",
+
+	"description": "__MSG_extension_desc__",
+	"developer": {
+		"name": "Joel Spadin",
+		"url": "http://chaosinacan.com"
+	},
+	"icons": {
+		"16": "img/blank.png",
+		"48": "img/icon-48.png"
+	},
+
+	"background": {
+		"scripts": [
+			"js/lib/async.js",
+			"js/background.js"
+		],
+		"persistent": false
+	},
+	"content_security_policy": "script-src 'self'; object-src 'self';",
+	"incognito": "spanning",
+	"offline_enabled": true,
+	"options_page": "options-page.html",
+	"permissions": [
+		"contentSettings",
+		"contextMenus",
+		"tabs",
+		"storage",
+		"<all_urls>"
+	],
+	"web_accessible_resources": [
+		"css/inject/dialog.css",
+		"css/inject/dialog.css.map",
+		"css/inject/dialog.less",
+		"css/options.css.map",
+		"css/options.less",
+		"js/inject/dialog.js.map",
+		"js/inject/dialog.ts",
+		"js/lib/options-page.js.map",
+		"js/lib/options-page.ts",
+		"js/storage.js.map",
+		"js/storage.ts",
+		"js/background.js.map",
+		"js/background.ts",
+		"js/settings.js.map",
+		"js/settings.ts"
+	]
+}
