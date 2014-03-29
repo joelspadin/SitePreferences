@@ -53,12 +53,24 @@
 		"description": "Button to clear all settings for a content type"
 	},
 	"title_reset_settings": {
-		"message": "Reset $1 settings",
-		"description": "Title for the reset settings modal dialog. $1 is replaced by the content type being cleared."
+		"message": "Reset $contenttype$ settings",
+		"description": "Title for the reset settings modal dialog.",
+		"placeholders": {
+			"contenttype": {
+				"content": "$1",
+				"example": "cookie"
+			}
+		}
 	},
 	"msg_confirm_reset": {
-		"message": "Are you sure you want to reset $1 settings? This will clear customized settings for all web sites.",
-		"description": "Message for the reset settings modal dialog. $1 is replaced by the content type being cleared."
+		"message": "Are you sure you want to reset $contenttype$ settings? This will clear customized settings for all web sites.",
+		"description": "Message for the reset settings modal dialog.",
+		"placeholders": {
+			"contenttype": {
+				"content": "$1",
+				"example": "cookie"
+			}
+		}
 	},
 	"type_cookie": {
 		"message": "cookie",
@@ -94,8 +106,14 @@
 	},
 
 	"title_preferences": {
-		"message": "Preferences for $1",
-		"description": "Title for the site preferences modal dialog. $1 is replaced by the current site name."
+		"message": "Preferences for $hostname$",
+		"description": "Title for the site preferences modal dialog.",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "images.google.com"
+			}
+		}
 	},
 	"allow": {
 		"message": "Allow",
@@ -131,8 +149,18 @@
 		"description": "Title for error message dialogs."
 	},
 	"change_failed": {
-		"message": "Failed to change global settings for $1 to '$2'.",
-		"description": "Error message when a global plug-in setting could not be changed. $1 is replaced with the plug-in name and $2 with the attempted setting value."
+		"message": "Failed to change global settings for $plugin$ to '$setting$'.",
+		"description": "Error message when a global plug-in setting could not be changed.",
+		"placeholders": {
+			"plugin": {
+				"content": "$1",
+				"example": "Adobe Flash Player"
+			},
+			"setting": {
+				"content": "$2",
+				"example": "allow" 
+			}
+		}
 	},
 
 	"version_warning": {
