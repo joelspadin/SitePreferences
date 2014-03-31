@@ -55,7 +55,7 @@
 			},
 			"setting": {
 				"content": "$2",
-				"example": "allow" 
+				"example": "allow"
 			}
 		}
 	},
@@ -139,7 +139,7 @@
 		"description": "Content type for reset settings modal dialog."
 	},
 	"version_warning": {
-		"message": "Kullandığınız Opera sürümünde, bu eklentinin çalışabilmesi için gereken bir ayar (<strong>tıkla oynat</strong>) devre dışı görünmektedir. Eğer bu			sizin varsayılan ayarınız ise ve bunu <strong>Kabul et</strong> ya da <strong>Engelle</strong> olarak değiştirirseniz; eklenti ayarlarını varsayılan	ayarlara	sıfırlamadıkça bu değiştirdiğiniz ayarı geri alınamaz. Bu sorun Opera <a href='http://blogs.opera.com/desktop/'>geliştirici sürümlerinde</a>	çözülmüştür.",
+		"message": "Kullandığınız Opera sürümünde, bu eklentinin çalışabilmesi için gereken bir ayar (<strong>tıkla oynat</strong>) devre dışı görünmektedir. Eğer bu sizin varsayılan ayarınız ise ve bunu <strong>Kabul et</strong> ya da <strong>Engelle</strong> olarak değiştirirseniz; eklenti ayarlarını varsayılan ayarlara sıfırlamadıkça bu değiştirdiğiniz ayarı geri alınamaz. Bu sorun Opera <a href='http://blogs.opera.com/desktop/'>geliştirici sürümlerinde</a> çözülmüştür.",
 		"description": "Warning displayed when using old versions of Opera in which plug-ins cannot be set to the Ask setting. HTML allowed."
 	},
 	"default": {
