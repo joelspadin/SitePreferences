@@ -1,6 +1,6 @@
  {
  	"extension_name": {
-	"message": "Preferencje stron"
+		"message": "Preferencje stron"
 	},
 	"extension_desc": {
 		"message": "Edytuj preferencje stron bez wchodzenia na ustawienia Opery."
@@ -11,10 +11,10 @@
 	},
 	
 	"__MSG_extension_name__": {
-	  "message": "Preferencje stron"
+		"message": "Preferencje stron"
 	},
 	"__MSG_extension_desc__": {
-	  "message": "Edytuj preferencje stron bez wchodzenia na ustawienia Opery."
+		"message": "Edytuj preferencje stron bez wchodzenia na ustawienia Opery."
 	},
 	
 	"context_menu": {
