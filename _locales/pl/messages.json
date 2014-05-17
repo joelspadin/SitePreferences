@@ -1,6 +1,6 @@
  {
-  "extension_name": {
-	  "message": "Preferencje stron"
+ 	"extension_name": {
+	"message": "Preferencje stron"
 	},
 	"extension_desc": {
 		"message": "Edytuj preferencje stron bez wchodzenia na ustawienia Opery."
@@ -15,7 +15,8 @@
 	},
 	"__MSG_extension_desc__": {
 	  "message": "Edytuj preferencje stron bez wchodzenia na ustawienia Opery."
-
+	},
+	
 	"context_menu": {
 		"message": "Preferencje strony...",
 		"description": "Text for the context menu item"
