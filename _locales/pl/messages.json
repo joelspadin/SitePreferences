@@ -1,0 +1,181 @@
+ {
+ 	"extension_name": {
+		"message": "Preferencje stron"
+	},
+	"extension_desc": {
+		"message": "Edytuj preferencje stron bez wchodzenia na ustawienia Opery."
+	},
+	"by": {
+		"message": "Autor:",
+		"description": "Appears on the options page as 'By [Extension Author]'"
+	},
+	
+	"__MSG_extension_name__": {
+		"message": "Preferencje stron"
+	},
+	"__MSG_extension_desc__": {
+		"message": "Edytuj preferencje stron bez wchodzenia na ustawienia Opery."
+	},
+	
+	"context_menu": {
+		"message": "Preferencje strony...",
+		"description": "Text for the context menu item"
+	},
+
+	"cookies": {
+		"message": "Ciasteczka",
+		"description": "Cookies content type"
+	},
+	"images": {
+		"message": "Obrazki",
+		"description": "Images content type"
+	},
+	"notifications": {
+		"message": "Powiadomienia",
+		"description": "Notifications content type"
+	},
+	"plugins": {
+		"message": "Wtyczki",
+		"description": "Plug-ins content type"
+	},
+	"popups": {
+		"message": "Okna pop-up",
+		"description": "Pop-ups content type"
+	},
+	"scripts": {
+		"message": "Skrypty",
+		"description": "Scripts content type"
+	},
+	"all_content_types": {
+		"message": "Wszystkie typy zawartości",
+		"description": "All of the supported content types"
+	},
+
+	"reset_settings": {
+		"message": "Zresetuj ustawienia",
+		"description": "Header for the Reset Settings section of the options page"
+	},
+	"clear_all_settings": {
+		"message": "Wyczyść wszystkie ustawienia",
+		"description": "Button to clear all settings for a content type"
+	},
+	"title_reset_settings": {
+		"message": "Zresetuj ustawienia $contenttype$",
+		"description": "Title for the reset settings modal dialog.",
+		"placeholders": {
+			"contenttype": {
+				"content": "$1",
+				"example": "cookie"
+			}
+		}
+	},
+	"msg_confirm_reset": {
+		"message": "Jesteś pewien, że chcesz zresetować ustawienia $contenttype$? Ten manwer wyczyści Twoje własne ustawienia dla wszystkich stron internetowych.",
+		"description": "Message for the reset settings modal dialog.",
+		"placeholders": {
+			"contenttype": {
+				"content": "$1",
+				"example": "cookie"
+			}
+		}
+	},
+	"type_cookie": {
+		"message": "ciasteczka",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"type_image": {
+		"message": "obrazek",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"type_notification": {
+		"message": "powiadomienie",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"type_plugin": {
+		"message": "wtyczka",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"type_popup": {
+		"message": "okno pop-up",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"type_script": {
+		"message": "skrypt",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"type_all": {
+		"message": "wszystko",
+		"description": "Content type for reset settings modal dialog."
+	},
+	"plugin_settings": {
+		"message": "Ustawienia globalne wtyczek",
+		"description": "Header for the Global Plugin Settings section of the options page"
+	},
+
+	"title_preferences": {
+		"message": "Preferencje dla $hostname$",
+		"description": "Title for the site preferences modal dialog.",
+		"placeholders": {
+			"hostname": {
+				"content": "$1",
+				"example": "images.google.com"
+			}
+		}
+	},
+	"allow": {
+		"message": "Zezwól",
+		"description": "Content setting: allow the content type."
+	},
+	"ask": {
+		"message": "Pytaj",
+		"description": "Content setting: ask the user before allowing the content type."
+	},
+	"block": {
+		"message": "Blokuj",
+		"description": "Content setting: block the content type."
+	},
+	"session_only": {
+		"message": "Tylko sesja",
+		"description": "Cookies content setting: allow cookies, but delete them when the session ends."
+	},
+	"default": {
+		"message": "Domyślnie",
+		"description": "Content setting: use the default global setting."
+	},
+	"save": {
+		"message": "Zapisz",
+		"description": "Button: close the dialog and save changes."
+	},
+	"cancel": {
+		"message": "Anuluj",
+		"description": "Button: close the dialog without saving changes."
+	},
+
+	"error": {
+		"message": "Błąd",
+		"description": "Title for error message dialogs."
+	},
+	"change_failed": {
+		"message": "Nie udało się zmienić globalnych ustawień dla $plugin$ w '$setting$'.",
+		"description": "Error message when a global plug-in setting could not be changed.",
+		"placeholders": {
+			"plugin": {
+				"content": "$1",
+				"example": "Adobe Flash Player"
+			},
+			"setting": {
+				"content": "$2",
+				"example": "allow" 
+			}
+		}
+	},
+
+	"version_warning": {
+		"message": "Ta wersja Opery posiada błąd, który uniemożliwia rozszerzeniom ustawienie wtyczek jako <strong>Kliknij, aby odtworzyć</strong>. Jeśli jest to Twoje domyślne ustawienie i zmienisz danej stronie na <strong>Zezwól</strong> lub <strong>Blokuj</strong>, nie będziesz mógł zmienić tego ponownie bez zresetowania ustawień wtyczek dla wszystkich stron. Jest to naprawione w <a href='http://blogs.opera.com/desktop/'>wersjach Opery dla deweloperów.</a>",
+		"description": "Warning displayed when using old versions of Opera in which plug-ins cannot be set to the Ask setting. HTML allowed."
+	},
+	"browser_warning": {
+		"message": "Niektóre funkcje tego rozszerzenia mogą być specyficzne dla Opery i mogą nie funkcjonować w Twojej przeglądarce.",
+		"description": "Warning displayed when using a browser which isn't Opera."
+	}
+}
