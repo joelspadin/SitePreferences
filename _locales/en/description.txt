@@ -1,0 +1,9 @@
+﻿Site-specific Preferences brings back some of Opera 12's features for changing per-site settings. It lets you set whether Opera allows or blocks different types of content, such as plug-ins and pop-ups, for each site.
+
+Just right-click the page background and select "Site preferences" to open the preferences for that site.
+
+Using a certain, famous key sequence on the options page will let you allow, block or enable Click to play for individual plug-ins. This feature is experimental and might break things, so use it at your own risk.
+
+Known Issues:
+- Extensions are blocked on the Opera add-ons site, so the extension will not work here.
+- The extensions API does not provide extensions with a list of the sites they have customized, so I cannot provide a centralized place to edit settings for multiple sites like in Opera 12's options page.

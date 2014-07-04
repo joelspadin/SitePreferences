@@ -1,0 +1,13 @@
+﻿Site Tercihleri eklentisi, Opera 12'deki site tercihlerini değiştirebilme özelliklerinden bazılarını size geri sunuyor. Eklenti ile birtakım içerikleri ,örneğin yan uygulamalar ve açılır pencereler gibi, her bir site için ayrı olarak kabul edebilir yahut engelleyebilirsiniz.
+
+Yapmanız gereken sadece, sayfa üzerindeyeken farenizin sağ klik menüsünü tıklayıp "Site Tercihleri" menüsü tıklamak ve o siteye ait tercihleri yönetmek.
+
+Ayarlar sayfasındaki düğmeleri kullanarak herhangi bir içeriği engelleyebilir ya da kabul edebilirsiniz. Yine ayrıca bir yan uygulamayı da tıkla ve oynat şeklinde de ayarlayabilirsiniz.
+
+Bu özellik henüz daha deneysel bir aşamada ve bir takım şeyleri aktifleştirebilir, dolayısıyla bunu kullanmanın tamamen kendi sorumluluğunuzda olduğunu unutmayın.
+
+Bilinen Sorunlar:
+
+- Opera eklenti kataloğu sayfasında eklentiler engellendiği için , bu eklenti bu sayfada çalışmayacaktır.
+
+- Bu API, özelleştirilmiş sitelerin listesini gösteren eklentiler için destek sunmamaktadır, dolayısıyla sizlere Opera 12'deki gibi birçok siteyi aynı anda düzenleyebileceğiniz bir ayar bölümü sunamam.
