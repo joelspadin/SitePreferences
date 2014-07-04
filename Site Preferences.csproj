@@ -125,9 +125,12 @@
     <Content Include="README.min.html">
       <DependentUpon>README.html</DependentUpon>
     </Content>
-    <Content Include="_locales\en_US\messages.json" />
+    <Content Include="_locales\en\description.txt" />
+    <Content Include="_locales\en\messages.json" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="_locales\pl\description.txt" />
+    <Content Include="_locales\tr\description.txt" />
     <Content Include="_locales\tr\messages.json" />
   </ItemGroup>
   <ItemGroup>
@@ -135,5 +138,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="_locales\pl\messages.json" />
   </ItemGroup>
 </Project>
