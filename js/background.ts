@@ -16,18 +16,30 @@ function registerEventHandlers() {
 }
 registerEventHandlers();
 
-chrome.runtime.onInstalled.addListener((details) => {
+// Because Opera doesn't seem to fire runtime.onInstalled or runtime.onStartup
+// when the browser starts any more, this will re-register the context menu
+// each and every time the extension gets loaded. I shouldn't have to do this,
+// but at least this fixes the issue where the context menu doesn't appear
+// until you reload the extension.
+function stupidWorkaroundToCreateContextMenu() {
 	var CONTEXT_ID = 'page-settings';
 
+	chrome.contextMenus.removeAll();
 	chrome.contextMenus.create({
 		id: CONTEXT_ID,
 		title: chrome.i18n.getMessage('context_menu'),
 		contexts: ['page'],
 		targetUrlPatterns: ['*://*/*'],
 	});
+}
 
+chrome.runtime.onInstalled.addListener((details) => {
 	clearInjectedTabs();
+
+	stupidWorkaroundToCreateContextMenu();
 });
+
+stupidWorkaroundToCreateContextMenu();
 
 function onContextMenuClicked(e: chrome.contextMenus.OnClickData, tab?: chrome.tabs.Tab) {
 	// Get the Primary URL pattern for chrome.contentSettings
