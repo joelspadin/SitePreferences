@@ -82,10 +82,11 @@ module dialog {
 	export var overlay: HTMLDivElement = null;
 	export var content: HTMLDivElement = null;
 	export var settings: { [key: string]: HTMLElement; } = {};
+	export var url: string = null;
 
 	export function show(settings: ContentSettings) {
 		if (!built) {
-			buildDialog();
+			buildDialog(settings.url);
 		}
 
 		if (closingTimeout) {
@@ -121,10 +122,12 @@ module dialog {
 		close();
 	}
 
-	function buildDialog() {
+	function buildDialog(url: string) {
 		built = true;
 		styles.inject();
 		hideEmbeds();
+
+		dialog.url = url;
 
 		overlay = document.createElement('div');
 		overlay.classList.add(TRANSPARENT_CLASS);
@@ -141,7 +144,8 @@ module dialog {
 		}, false);
 
 		var header = document.createElement('header');
-		header.innerHTML = getDialogTitle();
+		var title = getDialogTitle(url)
+		header.innerHTML = title;
 		content.appendChild(header);
 
 		for (var key in SETTINGS) {
@@ -164,6 +168,11 @@ module dialog {
 
 		overlay.appendChild(content);
 		document.body.appendChild(overlay);
+
+		// If standalone page, set page title
+		if (window.location.protocol === 'chrome-extension:') {
+			document.title = title.replace('<span>', '').replace('</span>', '');
+		}
 	}
 
 	function buildSetting(setting: string): HTMLElement {
@@ -205,6 +214,11 @@ module dialog {
 		settings = {};
 
 		built = false;
+
+		// If standalone, close the tab too
+		if (window.location.protocol === 'chrome-extension:') {
+			window.close();
+		}
 	}
 
 	function endPulse() {
@@ -213,6 +227,7 @@ module dialog {
 
 	function getCurrentSettings(): ContentSettings {
 		var settings: ContentSettings = {
+			url: dialog.url,
 			cookies: null,
 			images: null,
 			javascript: null,
@@ -222,7 +237,7 @@ module dialog {
 		};
 
 		for (var key in settings) {
-			if (settings.hasOwnProperty(key)) {
+			if (key in SETTINGS) {
 				var name = getSettingName(key);
 				var input = document.querySelector('input[name=' + name + ']:checked');
 				if (input) {
@@ -234,15 +249,18 @@ module dialog {
 		return settings;
 	}
 
-	function getDialogTitle() {
+	function getDialogTitle(url: string) {
 		var path;
-		if (window.location.protocol === 'file:') {
-			path = decodeURIComponent(window.location.pathname).replace(/^\//, '');
+		var a = document.createElement('a');
+		a.href = url;
+
+		if (a.protocol === 'file:') {
+			path = decodeURIComponent(a.pathname).replace(/^\//, '');
 			if (navigator.platform.toLowerCase().indexOf('win') >= 0) {
 				path = path.replace(/\//g, '\\');
 			}
 		} else {
-			path = window.location.hostname;
+			path = a.hostname;
 		}
 
 		return CONTENT_TITLE.replace('%s', path);
@@ -280,7 +298,7 @@ module dialog {
 
 	function updateSettings(settings: ContentSettings) {
 		for (var key in settings) {
-			if (settings.hasOwnProperty(key)) {
+			if (key in SETTINGS) {
 				var value = settings[key];
 				var name = getSettingName(key);
 

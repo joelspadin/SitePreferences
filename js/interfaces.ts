@@ -1,4 +1,5 @@
 interface ContentSettings {
+	url: string;
 	cookies: string;
 	popups: string;
 	javascript: string;

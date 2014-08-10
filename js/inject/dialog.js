@@ -1,4 +1,4 @@
-/// <reference path="../lib/chrome.d.ts" />
+﻿/// <reference path="../lib/chrome.d.ts" />
 /// <reference path="../interfaces.ts" />
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     switch (message.action) {
@@ -72,10 +72,11 @@ var dialog;
     dialog.overlay = null;
     dialog.content = null;
     dialog.settings = {};
+    dialog.url = null;
 
     function show(settings) {
         if (!built) {
-            buildDialog();
+            buildDialog(settings.url);
         }
 
         if (closingTimeout) {
@@ -114,10 +115,12 @@ var dialog;
     }
     dialog.saveAndClose = saveAndClose;
 
-    function buildDialog() {
+    function buildDialog(url) {
         built = true;
         styles.inject();
         hideEmbeds();
+
+        dialog.url = url;
 
         dialog.overlay = document.createElement('div');
         dialog.overlay.classList.add(TRANSPARENT_CLASS);
@@ -134,7 +137,8 @@ var dialog;
         }, false);
 
         var header = document.createElement('header');
-        header.innerHTML = getDialogTitle();
+        var title = getDialogTitle(url);
+        header.innerHTML = title;
         dialog.content.appendChild(header);
 
         for (var key in SETTINGS) {
@@ -157,6 +161,11 @@ var dialog;
 
         dialog.overlay.appendChild(dialog.content);
         document.body.appendChild(dialog.overlay);
+
+        // If standalone page, set page title
+        if (window.location.protocol === 'chrome-extension:') {
+            document.title = title.replace('<span>', '').replace('</span>', '');
+        }
     }
 
     function buildSetting(setting) {
@@ -198,6 +207,11 @@ var dialog;
         dialog.settings = {};
 
         built = false;
+
+        // If standalone, close the tab too
+        if (window.location.protocol === 'chrome-extension:') {
+            window.close();
+        }
     }
 
     function endPulse() {
@@ -206,6 +220,7 @@ var dialog;
 
     function getCurrentSettings() {
         var settings = {
+            url: dialog.url,
             cookies: null,
             images: null,
             javascript: null,
@@ -215,7 +230,7 @@ var dialog;
         };
 
         for (var key in settings) {
-            if (settings.hasOwnProperty(key)) {
+            if (key in SETTINGS) {
                 var name = getSettingName(key);
                 var input = document.querySelector('input[name=' + name + ']:checked');
                 if (input) {
@@ -227,15 +242,18 @@ var dialog;
         return settings;
     }
 
-    function getDialogTitle() {
+    function getDialogTitle(url) {
         var path;
-        if (window.location.protocol === 'file:') {
-            path = decodeURIComponent(window.location.pathname).replace(/^\//, '');
+        var a = document.createElement('a');
+        a.href = url;
+
+        if (a.protocol === 'file:') {
+            path = decodeURIComponent(a.pathname).replace(/^\//, '');
             if (navigator.platform.toLowerCase().indexOf('win') >= 0) {
                 path = path.replace(/\//g, '\\');
             }
         } else {
-            path = window.location.hostname;
+            path = a.hostname;
         }
 
         return CONTENT_TITLE.replace('%s', path);
@@ -271,7 +289,7 @@ var dialog;
 
     function updateSettings(settings) {
         for (var key in settings) {
-            if (settings.hasOwnProperty(key)) {
+            if (key in SETTINGS) {
                 var value = settings[key];
                 var name = getSettingName(key);
 

@@ -8,6 +8,8 @@ var MESSAGE_HANDLERS = {
 	save: onSaveMessage,
 }
 
+var CONTENT_SETTINGS = ['cookies', 'images', 'javascript', 'notifications', 'plugins', 'popups'];
+
 function registerEventHandlers() {
 	chrome.contextMenus.onClicked.addListener(onContextMenuClicked);
 	chrome.tabs.onRemoved.addListener(onTabRemoved);
@@ -46,11 +48,29 @@ function onContextMenuClicked(e: chrome.contextMenus.OnClickData, tab?: chrome.t
 	var url = getPrimaryUrlPattern(e.pageUrl);
 
 	async.waterfall([
-		// Get whether the script is already injected
-		async.apply(getTabInjected, tab.id),
+		// Check if tab has scripting disabled
+		async.apply(getScriptingDisabled, url),
+
+		// If scripting is disabled, create a new tab for the menu and don't inject scripts
+		// If scripting is enabled, get whether the script is already injected
+		(scriptingDisabled: boolean, callback: AsyncSingleResultCallback<boolean>) => {
+			if (scriptingDisabled) {
+				chrome.tabs.create({
+					url: 'standalone.html',
+					active: true,
+					openerTabId: tab.id,
+					index: tab.index + 1,
+				}, newTab => {
+					tab = newTab;
+					callback(null, true);
+					});
+			} else {
+				getTabInjected(tab.id, callback);
+			}
+		},
 
 		// Inject the settings dialog into the page
-		(alreadyInjected: boolean) => {
+		(alreadyInjected: boolean, callback: Function) => {
 			var tasks = [];
 
 			// Only inject styles and the script if we haven't done so yet.
@@ -69,10 +89,13 @@ function onContextMenuClicked(e: chrome.contextMenus.OnClickData, tab?: chrome.t
 			async.parallel(tasks, (err, results) => {
 				// Collect all the results and message them to the injected script
 				var settings = mergeObjects(results);
+				settings['url'] = e.pageUrl;
 				chrome.tabs.sendMessage(tab.id, {
 					action: 'trigger',
 					settings: settings,
 				});
+
+				callback();
 			});
 		}
 	]);
@@ -100,10 +123,10 @@ function onTabUpdated(tabId: number, changeInfo: chrome.tabs.TabChangeInfo) {
 }
 
 function onSaveMessage(message: SaveMessage, sender: chrome.runtime.MessageSender) {
-	var url = getPrimaryUrlPattern(sender.tab.url);
+	var url = getPrimaryUrlPattern(message.settings.url || sender.tab.url);
 
 	for (var key in message.settings) {
-		if (message.settings.hasOwnProperty(key)) {
+		if (CONTENT_SETTINGS.indexOf(key) >= 0) {
 			var value = message.settings[key];
 			if (value) {
 				try {
@@ -127,6 +150,16 @@ function clearInjectedTabs(callback?: Function) {
 	chrome.storage.local.set(items, () => {
 		if (callback) {
 			callback(null);
+		}
+	});
+}
+
+function getScriptingDisabled(url: string, callback: AsyncSingleResultCallback<boolean>) {
+	getContentSettings('javascript', url, (err, result) => {
+		if (err) {
+			callback(err, false);
+		} else {
+			callback(null, result['javascript'] === 'block');
 		}
 	});
 }

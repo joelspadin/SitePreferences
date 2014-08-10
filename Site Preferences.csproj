@@ -125,6 +125,7 @@
     <Content Include="README.min.html">
       <DependentUpon>README.html</DependentUpon>
     </Content>
+    <Content Include="standalone.html" />
     <Content Include="_locales\en\description.txt" />
     <Content Include="_locales\en\messages.json" />
   </ItemGroup>
