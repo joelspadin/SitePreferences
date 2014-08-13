@@ -1,0 +1,33 @@
+﻿body {
+	margin: 0;
+	padding: 0;
+	width: auto;
+	height: auto;
+	// Remove the dialog border and animations. The browser provides these already.
+	#__ext_site_preferences_overlay__ {
+		position: static;
+		background: none;
+		transition: none;
+
+		&.__ext_site_preferences_transparent__ {
+			opacity: 1;
+
+			#__ext_site_preferences_content__ {
+				-webkit-transform: none;
+				transform: none;
+			}
+		}
+	}
+
+	#__ext_site_preferences_content__ {
+		max-width: none;
+		box-shadow: none;
+		border-radius: 0;
+		transition: none;
+
+		&.__ext_site_preferences_pulse__ {
+			animation-name: none;
+			-webkit-animation-name: none;
+		}
+	}
+}

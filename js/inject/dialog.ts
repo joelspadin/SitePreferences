@@ -1,7 +1,8 @@
 /// <reference path="../lib/chrome.d.ts" />
 /// <reference path="../interfaces.ts" />
 
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+function onDialogMessage(message, sender, sendResponse) {
+	console.log(message, sender, sendResponse);
 	switch (message.action) {
 		case 'trigger':
 			dialog.show(message.settings);
@@ -10,7 +11,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 		default:
 			console.log('Unknown action: ' + message.action);
 	}
-});
+}
+
+chrome.runtime.onMessage.addListener(onDialogMessage);
 
 module dialog {
 	var localize = chrome.i18n.getMessage;

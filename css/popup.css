@@ -1,0 +1,29 @@
+﻿body {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  height: auto;
+}
+body #__ext_site_preferences_overlay__ {
+  position: static;
+  background: none;
+  transition: none;
+}
+body #__ext_site_preferences_overlay__.__ext_site_preferences_transparent__ {
+  opacity: 1;
+}
+body #__ext_site_preferences_overlay__.__ext_site_preferences_transparent__ #__ext_site_preferences_content__ {
+  -webkit-transform: none;
+  transform: none;
+}
+body #__ext_site_preferences_content__ {
+  max-width: none;
+  box-shadow: none;
+  border-radius: 0;
+  transition: none;
+}
+body #__ext_site_preferences_content__.__ext_site_preferences_pulse__ {
+  animation-name: none;
+  -webkit-animation-name: none;
+}
+/*# sourceMappingURL=popup.css.map */

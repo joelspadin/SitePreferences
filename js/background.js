@@ -4,13 +4,15 @@
 var INJECTED_KEY = 'injected';
 
 var MESSAGE_HANDLERS = {
-    save: onSaveMessage
+    save: onSaveMessage,
+    popup: onPopupOpen
 };
 
 var CONTENT_SETTINGS = ['cookies', 'images', 'javascript', 'notifications', 'plugins', 'popups'];
 
 function registerEventHandlers() {
     chrome.contextMenus.onClicked.addListener(onContextMenuClicked);
+    chrome.runtime.onConnect.addListener(onConnect);
     chrome.tabs.onRemoved.addListener(onTabRemoved);
     chrome.tabs.onUpdated.addListener(onTabUpdated);
     chrome.runtime.onMessage.addListener(onMessage);
@@ -43,63 +45,21 @@ chrome.runtime.onInstalled.addListener(function (details) {
 stupidWorkaroundToCreateContextMenu();
 
 function onContextMenuClicked(e, tab) {
-    // Get the Primary URL pattern for chrome.contentSettings
-    var url = getPrimaryUrlPattern(e.pageUrl);
+    openPreferences(false, tab, e.pageUrl);
+}
 
-    async.waterfall([
-        async.apply(getScriptingDisabled, url),
-        // If scripting is disabled, create a new tab for the menu and don't inject scripts
-        // If scripting is enabled, get whether the script is already injected
-        function (scriptingDisabled, callback) {
-            if (scriptingDisabled) {
-                chrome.tabs.create({
-                    url: 'standalone.html',
-                    active: true,
-                    openerTabId: tab.id,
-                    index: tab.index + 1
-                }, function (newTab) {
-                    tab = newTab;
-                    callback(null, true);
-                });
-            } else {
-                getTabInjected(tab.id, callback);
-            }
-        },
-        // Inject the settings dialog into the page
-        function (alreadyInjected, callback) {
-            var tasks = [];
-
-            // Only inject styles and the script if we haven't done so yet.
-            if (!alreadyInjected) {
-                tasks = tasks.concat([
-                    async.apply(injectScript, tab.id),
-                    async.apply(setTabInjected, tab.id, true)
-                ]);
-            }
-
-            // Collect each of the content settings for the site
-            ['cookies', 'popups', 'javascript', 'notifications', 'plugins', 'images'].forEach(function (setting) {
-                tasks.push(async.apply(getContentSettings, setting, url));
-            });
-
-            async.parallel(tasks, function (err, results) {
-                // Collect all the results and message them to the injected script
-                var settings = mergeObjects(results);
-                settings['url'] = e.pageUrl;
-                chrome.tabs.sendMessage(tab.id, {
-                    action: 'trigger',
-                    settings: settings
-                });
-
-                callback();
-            });
-        }
-    ]);
+function onConnect(port) {
+    console.log('connect');
+    port.onMessage.addListener(function (message) {
+        console.log('got message', message, port);
+        onMessage(message, port.sender, port);
+    });
 }
 
 function onMessage(message, sender, sendResponse) {
+    console.log(arguments);
     if (message.action in MESSAGE_HANDLERS) {
-        MESSAGE_HANDLERS[message.action](message, sender);
+        return MESSAGE_HANDLERS[message.action].apply(null, Array.prototype.slice.apply(arguments));
     } else {
         console.log('Unknown action: ' + message.action);
     }
@@ -137,6 +97,16 @@ function onSaveMessage(message, sender) {
             }
         }
     }
+}
+
+function onPopupOpen(message, sender, port) {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+        if (tabs.length > 0) {
+            openPreferences(true, port, tabs[0].url);
+        } else {
+            console.error("Can't get active tab!", null);
+        }
+    });
 }
 
 function clearInjectedTabs(callback) {
@@ -213,6 +183,73 @@ function mergeObjects(objects) {
     });
 
     return result;
+}
+
+function openPreferences(isPopup, target, siteUrl) {
+    // Get the Primary URL pattern for chrome.contentSettings
+    var url = getPrimaryUrlPattern(siteUrl);
+    var tab = isPopup ? null : target;
+    var port = isPopup ? target : null;
+
+    async.waterfall([
+        async.apply(getScriptingDisabled, url),
+        // If this is a popup, don't inject scripts
+        // If scripting is disabled, create a new tab for the menu and don't inject scripts
+        // If scripting is enabled, get whether the script is already injected
+        function (scriptingDisabled, callback) {
+            if (isPopup) {
+                callback(null, true);
+            } else if (scriptingDisabled) {
+                chrome.tabs.create({
+                    url: 'standalone.html',
+                    active: true,
+                    openerTabId: tab.id,
+                    index: tab.index + 1
+                }, function (newTab) {
+                    tab = newTab;
+                    callback(null, true);
+                });
+            } else {
+                getTabInjected(tab.id, callback);
+            }
+        },
+        // Inject the settings dialog into the page
+        function (alreadyInjected, callback) {
+            var tasks = [];
+
+            // Only inject styles and the script if we haven't done so yet.
+            if (!alreadyInjected) {
+                tasks = tasks.concat([
+                    async.apply(injectScript, tab.id),
+                    async.apply(setTabInjected, tab.id, true)
+                ]);
+            }
+
+            // Collect each of the content settings for the site
+            ['cookies', 'popups', 'javascript', 'notifications', 'plugins', 'images'].forEach(function (setting) {
+                tasks.push(async.apply(getContentSettings, setting, url));
+            });
+
+            async.parallel(tasks, function (err, results) {
+                // Collect all the results and message them to the injected script
+                var settings = mergeObjects(results);
+                settings['url'] = siteUrl;
+                var message = {
+                    action: 'trigger',
+                    settings: settings
+                };
+
+                if (isPopup) {
+                    console.log('sending response', message);
+                    port.postMessage(message);
+                } else {
+                    chrome.tabs.sendMessage(tab.id, message);
+                }
+
+                callback();
+            });
+        }
+    ]);
 }
 
 /**

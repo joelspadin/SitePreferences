@@ -1,5 +1,4 @@
-﻿
-@background: #fff;
+﻿@background: #fff;
 @accent: #f7f7f7;
 @border: #dedede;
 @header-text: #a7a7a7;
@@ -29,7 +28,6 @@
 	justify-content: center;
 	align-items: center;
 	background: rgba(0, 0, 0, 0.3);
-
 	opacity: 1;
 	transition: opacity 0.2s;
 
@@ -46,21 +44,16 @@
 #__ext_site_preferences_content__ {
 	display: block;
 	position: static;
-
 	direction: @direction;
-
 	max-width: 80%;
 	background: @background;
 	box-shadow: 0 4px 23px 5px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.15);
 	border-radius: 3px;
-
 	transition: -webkit-transform 0.2s;
 	transition: transform 0.2s;
-
 	-webkit-user-select: none;
 	user-select: none;
 	cursor: default;
-
 	// Override all the things!
 	& * {
 		position: static;
@@ -68,7 +61,6 @@
 		height: auto;
 		margin: 0;
 		padding: 0;
-
 		direction: @direction;
 		color: @text;
 		background-color: transparent;
@@ -84,6 +76,9 @@
 	header {
 		display: block;
 		padding: 18px @hpadding;
+		max-width: 600px;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		color: @header-text;
 
 		&, & span {
@@ -102,11 +97,12 @@
 		padding: 0 @hpadding;
 		margin: 1rem 0;
 		max-width: 600px;
+		white-space: nowrap;
 
 		span:first-child {
 			-ms-flex: 1 1 auto;
 			flex: 1 1 auto;
-			margin-@{right}: 40px;
+			margin-@{right}: 40px; // Random comment so Visual Studio will stop "fixing" this.
 			text-align: @left;
 		}
 
@@ -132,12 +128,10 @@
 			box-sizing: border-box;
 			padding: 0 10px;
 			min-width: 80px;
-
 			line-height: 24px;
 			border: 1px solid @border;
 			background: @accent;
 			text-align: center;
-
 			-webkit-user-select: none;
 			user-select: none;
 		}
@@ -184,11 +178,8 @@
 			box-sizing: border-box;
 			min-width: 64px;
 			padding: 3px 12px;
-			margin-@{left}: 10px;
-
 			font-size: 11px;
 			text-align: center;
-			
 			-webkit-appearance: button !important;
 			color: buttontext;
 			background-color: buttonface;
@@ -207,6 +198,8 @@
 			&:focus {
 				outline-offset: 0;
 			}
+
+			margin-@{left}: 10px;
 		}
 	}
 
@@ -244,12 +237,15 @@
 	0% {
 		-webkit-transform: scale(1);
 	}
+
 	40% {
 		-webkit-transform: scale(1.02);
 	}
+
 	60% {
 		-webkit-transform: scale(1.02);
 	}
+
 	100% {
 		-webkit-transform: scale(1);
 	}
