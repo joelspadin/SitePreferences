@@ -25,7 +25,7 @@ INCLUDES = [
     'manifest.json',
     'LICENSE',
     'README.md',
-    'options-page.html',
+    '*.html',
 ]
 
 IGNORE_TYPES = [

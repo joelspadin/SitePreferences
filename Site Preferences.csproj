@@ -74,6 +74,12 @@
     <Content Include="css\options.min.css">
       <DependentUpon>options.css</DependentUpon>
     </Content>
+    <Content Include="css\popup.css">
+      <DependentUpon>popup.less</DependentUpon>
+    </Content>
+    <Content Include="css\popup.min.css">
+      <DependentUpon>popup.css</DependentUpon>
+    </Content>
     <Content Include="img\blank.png" />
     <Content Include="img\icon-48.svg" />
     <Content Include="img\icon-64.png" />
@@ -96,6 +102,7 @@
     <TypeScriptCompile Include="js\lib\chrome.d.ts" />
     <TypeScriptCompile Include="js\lib\options-page.ts" />
     <TypeScriptCompile Include="js\options.ts" />
+    <TypeScriptCompile Include="js\popup.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\inject\dialog.less" />
@@ -125,6 +132,7 @@
     <Content Include="README.min.html">
       <DependentUpon>README.html</DependentUpon>
     </Content>
+    <Content Include="popup.html" />
     <Content Include="standalone.html" />
     <Content Include="_locales\en\description.txt" />
     <Content Include="_locales\en\messages.json" />
@@ -142,5 +150,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="_locales\pl\messages.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\popup.less" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\popup.css.map">
+      <DependentUpon>popup.css</DependentUpon>
+    </Content>
   </ItemGroup>
 </Project>
